@@ -19,10 +19,10 @@ This document has been developped on our understanding of the NXP IoT ControlBri
 | ------------ | ------------ | ------------ |
 | USB          | ZiGate V1    | No flow control (hardware or software) is used |
 | DIN          | ZiGate V1    | RTS/CTS HW flow control |
-| PI           | ZiGate V1    | ???? |
+| PI           | ZiGate V1    | No flow control (hardware or software) is used |
 | USB          | ZiGate +/V2  | RTS/CTS HW flow control |
 | DIN          | ZiGate +/V2  | RTS/CTS HW flow control |
-| PI           | ZiGate +/V2  | ???? |
+| PI           | ZiGate +/V2  | No flow control (hardware or software) is used |
 
 ## Sequence
 
