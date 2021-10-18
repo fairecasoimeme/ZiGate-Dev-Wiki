@@ -34,7 +34,7 @@ All commands generate a synchronous response code followed by any asynchronous r
 | Controler -> Host | Status ( message type 0x8000 ) providing Status, SQN_APP, SQN_Type |
 | Controler -> Host | Optional 0x8012, The controler acknowledges the fact that the command has been received by at least the next hope |
 | Controler -> Host | optional, The node acknowledges each command with an “ACK” message. 0x8011 |
-| Controler -> Host | optional, The message has not been successfully send (or the coordinator didn't received the Ack on time) and then a NACK message provided.0x80702  |
+| Controler -> Host | optional, The message has not been successfully send (or the coordinator didn't received the Ack on time) and then a NACK message provided.0x8702  |
 | Controler -> Host | Optional data messages as requested |
 
 ## Sending unicast command with Ack or not
@@ -80,34 +80,37 @@ ATTENTION:
 | Controler -> Host | 0x8011 |             |
 | Controler -> Host | 0x8100 |             |
 
-## SQN Type
+## SQN Type (applicable with firmware > 31d)
 
-| Type | Description |
-| ---- | ----------- |
-| APS  |             |
-| APP  |             |
+You can refer to [table: zigate command](zigate-commands.md) to check the command layer ( ZDP, ZCL )
+When sending a command, a 0x8000 status message will be given and will provide you enough information to track the up-coming messages related to this command.
+
+| 0-1 | 2-6      | 6-10       | 10-12   |  12-14 | 14-16   | 16-20       | 20-22    | 22-24   |
+| --  | -------- | ---------- | ------- | ------ | ------- | ----------- | -------- | ------- |
+| 01  | 0x8000   | Msg Lenght | Msg Crc | Status | SQN APP | Packet Type | Type Sqn | Sqn Aps |
 
 ## Key Message Type
 
-| Message type |
-| ------------ |
-| 0x8000       |
-| 0x8012       |
-| 0x8011       |
-| 0x8701       |
-| 0x8702       |
+| Message type | SQN used |
+| ------------ | -------- |
+| 0x8012       | APS      |
+| 0x8011       | APS      |
+| 0x8702       | APS      |
+
+Note:
+
+0x8012 and 0x8702 have the same API, 0x8012 acknowledge the command has reach the next hop, while 0x8702 inform a failure
 
 ## Other message Type
 
 | Message Type    | Description                    |
 | ------------    | -----------                    |
-| 0x8035          |                                |
-| 0x9999          |                                |
-| 0x0012          |                                |
+| 0x8035          | Internal ZiGate Message        |
+| 0x9999          | NXP Extended Error Code        |
+| 0x0012          | Indicates a load of PDM (reboot Zigate)  |
 | 0x8701          | Async message, Route Discovery |
-| 0x9996 - 0x9999 |                                |
+| 0x9996 - 0x9998 | Debug message                  |
 
 ## References
 
 * <https://www.nxp.com/docs/en/application-note/JN-AN-1216.zip>
-* [Provides the list of ZiGate commands and informations on Zigbee Layers, SQN,Ack, 8012](zigate-commands.md)
