@@ -39,7 +39,6 @@ All commands generate a synchronous response code followed by any asynchronous r
 
 ## Sending unicast command with Ack or not
 
-
 When sending an unicat command ( which is dedicated to one Node ), you can send this command and expect in return some ack on the transit of the command from the controler to the Node.
 For instance you can be informed that the command has reached the first hope (after the controler), and you can also be notified when the command has been fully received by the Node.
 
@@ -57,6 +56,11 @@ The mecanism to be use to trigger Ack/noAck is based on the address mode used to
 Address modes 0x01, 0x04 are not relevant to unicast messages and are not discussed here.
 
 We highly recommend to use Ack mode when sending a message to a node ( like and end device) which is not listening all the time, to make sure that ZiGate will make enought retry ( up to timeout of 7s ) to get the message received by the node.
+
+ATTENTION:
+
+* When sending command with ACK do not send any other command until you get Ack ( 0x8011 ) or a NACK ( 0x8702 )
+* when sending command without ACK, do not send any other command until you get 8012 which acknowledge the fact that the command has been reach the next hop.
 
 ### Exemple 1: Get the ZiGate firmware version
 
