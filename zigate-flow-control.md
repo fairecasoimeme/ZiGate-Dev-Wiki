@@ -24,6 +24,8 @@ This document has been developped on our understanding of the NXP IoT ControlBri
 | DIN          | ZiGate +/V2  | RTS/CTS HW flow control |
 | PI           | ZiGate +/V2  | No flow control (hardware or software) is used |
 
+RECOMMANDATION: Activate HW flow control when supported by Zigate.
+
 ## Sequence
 
 All commands generate a synchronous response code followed by any asynchronous responses as they become available. There is no sequence number associated with each command/response – the user must ensure that commands are issued sequentially.
