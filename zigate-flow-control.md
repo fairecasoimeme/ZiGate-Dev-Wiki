@@ -68,19 +68,19 @@ ATTENTION:
 
 | Direction         | Message | Description |
 | ---------         | ------- | ----------- |
-| Host -> Controler | 0x0010  | Command 0x0010 Get Firmware Version |
-| Controler -> Host | 0x8000  | Status |
-| Controler -> Host | 0x8010  | Firmware version as the response |
+| Host -> Controller | 0x0010  | Command 0x0010 Get Firmware Version |
+| Controller -> Host | 0x8000  | Status |
+| Controller -> Host | 0x8010  | Firmware version as the response |
 
 ### Exemple 2: Get Attribute 0x0000 of Cluster 0x0006 of a particular Node
 
 | Direction | Message        | Description |
 | --------- | -------        | ----------- |
-| Host -> Controler | 0x0100 |             |
-| Controler -> Host | 0x8000 |             |
-| Controler -> Host | 0x8012 |             |
-| Controler -> Host | 0x8011 |             |
-| Controler -> Host | 0x8100 |             |
+| Host -> Controller | 0x0100 | Read attribute request    |
+| Controller -> Host | 0x8000 | Command accepted          |
+| Controller -> Host | 0x8012 | Cmd received by next hope |
+| Controller -> Host | 0x8011 | Node has received cmd     |
+| Controller -> Host | 0x8100 | Read attribute response   |
 
 ## SQN Type (applicable with firmware > 31d)
 
