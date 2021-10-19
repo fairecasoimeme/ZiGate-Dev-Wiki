@@ -68,9 +68,9 @@ ATTENTION:
 
 | Direction         | Message | Description |
 | ---------         | ------- | ----------- |
-| Host -> Controler | 0x0009  | Command 0x0009 Get Firmware Version |
+| Host -> Controler | 0x0010  | Command 0x0010 Get Firmware Version |
 | Controler -> Host | 0x8000  | Status |
-| Controler -> Host | 0x8009  | Firmware version as the response |
+| Controler -> Host | 0x8010  | Firmware version as the response |
 
 ### Exemple 2: Get Attribute 0x0000 of Cluster 0x0006 of a particular Node
 
