@@ -32,36 +32,36 @@ All commands generate a synchronous response code followed by any asynchronous r
 
 | Direction | Message |
 | --------- | ------- |
-| Host -> Controler | Command |
-| Controler -> Host | Status ( message type 0x8000 ) providing Status, SQN_APP, SQN_Type |
-| Controler -> Host | Optional 0x8012, The controler acknowledges the fact that the command has been received by at least the next hope |
-| Controler -> Host | optional, The node acknowledges each command with an “ACK” message. 0x8011 |
-| Controler -> Host | optional, The message has not been successfully send (or the coordinator didn't received the Ack on time) and then a NACK message provided.0x8702  |
-| Controler -> Host | Optional data messages as requested |
+| Host -> controller | Command |
+| controller -> Host | Status ( message type 0x8000 ) providing Status, SQN_APP, SQN_Type |
+| controller -> Host | Optional 0x8012, The controller acknowledges the fact that the command has been received by at least the next hope |
+| controller -> Host | optional, The node acknowledges each command with an “ACK” message. 0x8011 |
+| controller -> Host | optional, The message has not been successfully send (or the coordinator didn't received the Ack on time) and then a NACK message provided.0x8702  |
+| controller -> Host | Optional data messages as requested |
 
 ![comman flow diagram](command-flow.png)
 
 1. the host is sending a command for a particular node. Unicast mode
-2. the controler check the command allocate the needed resources ( nPDU, aPDU ...) and delegate the send, and send a confirmation to the host that the command has been processed to be sent.
-3. the controler is sending the command to the node. It has up to 7s (and can do retry) to send.
-4. the command has left the controler and reach (at least the first hop, or its final destination)
+2. the controller check the command allocate the needed resources ( nPDU, aPDU ...) and delegate the send, and send a confirmation to the host that the command has been processed to be sent.
+3. the controller is sending the command to the node. It has up to 7s (and can do retry) to send.
+4. the command has left the controller and reach (at least the first hop, or its final destination)
 5. the Node send an APS Ack confirming the command has been received.
-6. the controler is sending the confirmation of the command received by the node
+6. the controller is sending the confirmation of the command received by the node
 
 At that stage, the Host, can send a new command
 
 7. if applicable the Node is sending its response
-8. controler is forwarding the response to the Hosts
+8. controller is forwarding the response to the Hosts
 
-During the all sequence, the SQN provided by the controler with the 0x8000 status message will be used to reconciliate the up coming messages like ( 0x8012, 0x8011, 0x8702 and the response data).
+During the all sequence, the SQN provided by the controller with the 0x8000 status message will be used to reconciliate the up coming messages like ( 0x8012, 0x8011, 0x8702 and the response data).
 
 ATTENTION:
-The NXP stack might generate 0x8011 messages in relation with direct exchanges between node and controler (not visible to the hosts)
+The NXP stack might generate 0x8011 messages in relation with direct exchanges between node and controller (not visible to the hosts)
 
 ## Sending unicast command with Ack or not
 
-When sending an unicat command ( which is dedicated to one Node ), you can send this command and expect in return some ack on the transit of the command from the controler to the Node.
-For instance you can be informed that the command has reached the first hope (after the controler), and you can also be notified when the command has been fully received by the Node.
+When sending an unicat command ( which is dedicated to one Node ), you can send this command and expect in return some ack on the transit of the command from the controller to the Node.
+For instance you can be informed that the command has reached the first hope (after the controller), and you can also be notified when the command has been fully received by the Node.
 
 Sending an unicast command with ACK mode, allow the NXP stack to do enough retry to send the command in case of interferences ... until we reach a TimeOut of 7s and then a NACK is issued and notified back to the host by the Coordinator.
 
