@@ -41,15 +41,15 @@ All commands generate a synchronous response code followed by any asynchronous r
 
 ![comman flow diagram](command-flow.png)
 
-(1) the host is sending a command for a particular node. Unicast mode
-(2) the controler check the command allocate the needed resources ( nPDU, aPDU ...) and delegate the send, and send a confirmation to the host that the command has been processed to be sent.
-(3) the controler is sending the command to the node. It has up to 7s (and can do retry) to send.
-(4) the command has left the controler and reach (at least the first hop, or its final destination)
-(5) the Node send an APS Ack confirming the command has been received.
-(6) the controler is sending the confirmation of the command received by the node
+1. (1) the host is sending a command for a particular node. Unicast mode
+1. (2) the controler check the command allocate the needed resources ( nPDU, aPDU ...) and delegate the send, and send a confirmation to the host that the command has been processed to be sent.
+1. (3) the controler is sending the command to the node. It has up to 7s (and can do retry) to send.
+1. (4) the command has left the controler and reach (at least the first hop, or its final destination)
+1. (5) the Node send an APS Ack confirming the command has been received.
+1. (6) the controler is sending the confirmation of the command received by the node
 At that stage, the Host, can send a new command
-(8) if applicable the Node is sending its response
-(8) controler is forwarding the response to the Hosts
+1. (8) if applicable the Node is sending its response
+1. (9) controler is forwarding the response to the Hosts
 ## Sending unicast command with Ack or not
 
 When sending an unicat command ( which is dedicated to one Node ), you can send this command and expect in return some ack on the transit of the command from the controler to the Node.
