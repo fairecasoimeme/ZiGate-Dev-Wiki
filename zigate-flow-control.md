@@ -39,6 +39,7 @@ All commands generate a synchronous response code followed by any asynchronous r
 | Controler -> Host | optional, The message has not been successfully send (or the coordinator didn't received the Ack on time) and then a NACK message provided.0x8702  |
 | Controler -> Host | Optional data messages as requested |
 
+
 ![comman flow diagram](command-flow.png)
 
 1. the host is sending a command for a particular node. Unicast mode
@@ -53,6 +54,9 @@ At that stage, the Host, can send a new command
 7. if applicable the Node is sending its response
 8. controler is forwarding the response to the Hosts
 
+During the all sequence, the SQN provided by the controler with the 0x8000 status message will be used to reconciliate the up coming messages like ( 0x8012, 0x8011, 0x8702 and the response data).
+ATTENTION:
+The NXP stack might generate 0x8011 messages in relation with direct exchanges between node and controler (not visible to the hosts)
 ## Sending unicast command with Ack or not
 
 When sending an unicat command ( which is dedicated to one Node ), you can send this command and expect in return some ack on the transit of the command from the controler to the Node.
