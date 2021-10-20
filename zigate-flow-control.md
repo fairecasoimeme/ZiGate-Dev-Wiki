@@ -39,6 +39,7 @@ All commands generate a synchronous response code followed by any asynchronous r
 | Controler -> Host | optional, The message has not been successfully send (or the coordinator didn't received the Ack on time) and then a NACK message provided.0x8702  |
 | Controler -> Host | Optional data messages as requested |
 
+[comman flow diagram](command-flow.png)
 ## Sending unicast command with Ack or not
 
 When sending an unicat command ( which is dedicated to one Node ), you can send this command and expect in return some ack on the transit of the command from the controler to the Node.
