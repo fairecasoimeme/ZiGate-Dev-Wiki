@@ -2,4 +2,4 @@
 Wiki for ZiGate developers. Discussion center for firmware evolution
 
 
-* [Command flow](zigate-commands.md)
+* [Command flow](zigate-flow-control.md)
