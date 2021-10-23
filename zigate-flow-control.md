@@ -28,30 +28,21 @@ RECOMMANDATION: Activate HW flow control when supported by Zigate.
 
 ## Sequence
 
-All commands generate a synchronous response code followed by any asynchronous responses as they become available. There is no sequence number associated with each command/response – the user must ensure that commands are issued sequentially.
-
-| Direction | Message |
-| --------- | ------- |
-| Host -> controller | Command |
-| controller -> Host | Status ( message type 0x8000 ) providing Status, SQN_APP, SQN_Type |
-| controller -> Host | Optional 0x8012, The controller acknowledges the fact that the command has been received by at least the next hope |
-| controller -> Host | optional, The node acknowledges each command with an “ACK” message. 0x8011 |
-| controller -> Host | optional, The message has not been successfully send (or the coordinator didn't received the Ack on time) and then a NACK message provided.0x8702  |
-| controller -> Host | Optional data messages as requested |
-
 ![comman flow diagram](command-flow.png)
 
-1. the host is sending a command for a particular node. Unicast mode
-2. the controller check the command allocate the needed resources ( nPDU, aPDU ...) and delegate the send, and send a confirmation to the host that the command has been processed to be sent.
-3. the controller is sending the command to the node. It has up to 7s (and can do retry) to send.
-4. the command has left the controller and reach (at least the first hop, or its final destination)
-5. the Node send an APS Ack confirming the command has been received.
-6. the controller is sending the confirmation of the command received by the node
+All commands generate a synchronous response code followed by any asynchronous responses as they become available. There is no sequence number associated with each command/response – the user must ensure that commands are issued sequentially.
 
-At that stage, the Host, can send a new command
-
-7. if applicable the Node is sending its response
-8. controller is forwarding the response to the Hosts
+| Step | Direction | Message |
+| ---- | --------- | ------- |
+| 1    | Host -> controller | the host is sending a command for a particular node. Unicast mode |
+| 2    | controller -> Host | the controller check the command allocate the needed resources ( nPDU, aPDU ...) and delegate the send, and send a confirmation to the host that the command has been processed to be sent. |
+| 3    | controller -> Node | the controller is sending the command to the node. It has up to 7s (and can do retry) to send.
+| 4    | controller -> Host | Optional 0x8012, the command has left the controller and reach (at least the first hop, or its final destination) |
+| 5    | Node -> Controller | the Node send an APS Ack confirming the command has been received. |
+| 6    | controller -> Host | optional, the controller is sending the confirmation of the command received by the node |
+| controller -> Host | optional, The message has not been successfully send (or the coordinator didn't received the Ack on time) and then a NACK message provided.0x8702  |
+| 7    | Node -> Controller | if applicable the Node is sending its response |
+| 8    | controller -> Host | Optional data messages as requested |
 
 During the all sequence, the SQN provided by the controller with the 0x8000 status message will be used to reconciliate the up coming messages like ( 0x8012, 0x8011, 0x8702 and the response data).
 
