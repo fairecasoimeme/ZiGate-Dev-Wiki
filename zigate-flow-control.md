@@ -40,7 +40,7 @@ All commands generate a synchronous response code followed by any asynchronous r
 | 4    | controller -> Host | Optional 0x8012, the command has left the controller and reach (at least the first hop, or its final destination) |
 | 5    | Node -> Controller | the Node send an APS Ack confirming the command has been received. |
 | 6    | controller -> Host | optional, the controller is sending the confirmation of the command received by the node |
-| controller -> Host | optional, The message has not been successfully send (or the coordinator didn't received the Ack on time) and then a NACK message provided.0x8702  |
+|      | controller -> Host | optional, The message has not been successfully send (or the coordinator didn't received the Ack on time) and then a NACK message provided.0x8702  |
 | 7    | Node -> Controller | if applicable the Node is sending its response |
 | 8    | controller -> Host | Optional data messages as requested |
 
