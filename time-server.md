@@ -16,8 +16,8 @@ Those are documented in the [ZiGate Commands](https://zigate.fr/documentation/co
 
 By default when a Node is requesting the Controller for time , the node is using a Read Attribute Request on cluster 0x000a.
 
-| Attribute | Description | Data Type | Note |*
-| --------- | ----------- | --------- | ---- |
+| Attribute | Description                                     | Data Type      | Note |
+| --------- | -----------                                     | ---------      | ---- |
 | 0x0000    | secondes since EPOCH ( 01/01/2000 )             | UTC ( 0xe2)    | provided by Zigate |
 | 0x0001    | Time status                                     | bitmap8 (0x18) | not provided by ZiGate, plugin needs to respond |
 | 0x0002    | Timezone                                        | uint32 (0x23)  | not provided by ZiGate, plugin needs to respond |
