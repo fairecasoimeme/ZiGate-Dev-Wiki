@@ -25,7 +25,7 @@ By default when a Node is requesting the Controller for time , the node is using
 
 The plugin will get the request via the Data Indication message 0x8002
 
-Please do not that some devices might required the Local time related to EPOCH (01/01/1970)
+### Please do not that some devices (some Tuya) might required the Local time related to EPOCH (01/01/1970)
 
 ## Specific to Legrand-Netatmo devices
 
