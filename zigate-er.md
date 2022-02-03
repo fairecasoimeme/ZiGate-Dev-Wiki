@@ -9,7 +9,7 @@ Globally and except if Zigate FW has to do the job, no other feature is required
    - To move from one zigate to another.
    - To restore to last known clean state. Repairing all devices is not an option. Not always easily possible and makes zigate experience just bad.
 
-  [PP] Advise to check here: https://github.com/zigpy/open-coordinator-backup this is currently implemented in some ZNP (Texas) and bellows (EZSP) keys, where basically they get access to the entire NVRAM. At then end you can backup on one brand and restore on an other brand in a full transparency.
+   [PP] Advise to check here: https://github.com/zigpy/open-coordinator-backup this is currently implemented in some ZNP (Texas) and bellows (EZSP) keys, where basically they get access to the entire NVRAM. At then end you can backup on one brand and restore on an other brand in a full transparency.
 
 1. Being able to remove a device from zigate network WITHOUT the device
 
